@@ -3,7 +3,7 @@ from django.urls import path
 from django.shortcuts import redirect
 from .models import CustomUser, Category, DesignRequest
 
-
+# суперюзер: Moonma \ yukifieri@gmail.com \ cnjbnithbcrf(стоитшериска)
 
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('username', 'full_name', 'email', 'is_staff')
