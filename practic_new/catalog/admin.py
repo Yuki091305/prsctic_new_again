@@ -16,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
     # При удалении категории — удалятся и заявки (благодаря CASCADE)
-    # Ничего дополнительно не нужно — Django сам покажет предупреждение
+
 
 class DesignRequestAdmin(admin.ModelAdmin):
     list_display = ('title', 'client', 'category', 'status', 'created_at')
