@@ -118,11 +118,6 @@ def delete_request(request, pk):
     return render(request, 'catalog/delete_request_confirm.html', {'request_obj': req})
 
 # Детали заявки
-@login_required
-def request_detail(request, pk):
-    req = get_object_or_404(DesignRequest, pk=pk, client=request.user)
-    return render(request, 'catalog/request_detail.html', {'request': req})
-
 @user_passes_test(is_admin, login_url='login')
 def admin_complete(request, pk):
     req = get_object_or_404(DesignRequest, pk=pk)

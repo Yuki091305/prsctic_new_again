@@ -6,20 +6,8 @@ from django.utils.translation import gettext_lazy as _
 import uuid
 
 
-def complete(self, design_image):
-    """Завершить заявку: можно из 'new' или 'in_progress'"""
-    if self.status not in ('new', 'in_progress'):
-        return False
-    if not design_image:
-        return False
-    self.status = 'completed'
-    self.design_image = design_image
-    self.save(update_fields=['status', 'design_image', 'updated_at'])
-    return True
-
-
 def validate_image_file(value):
-    """Валидатор изображения: формат и размер ≤ 2 МБ"""
+    # Валидатор изображения: формат и размер ≤ 2 МБ
     allowed_extensions = ['jpg', 'jpeg', 'png', 'bmp']
     ext = value.name.split('.')[-1].lower()
     if ext not in allowed_extensions:
@@ -142,11 +130,11 @@ class DesignRequest(models.Model):
 
     @property
     def can_be_deleted(self):
-        """Можно удалить, только если статус — 'Новая'"""
+        # Можно удалить, только если статус — 'Новая'
         return self.status == 'new'
 
     def take_to_work(self, comment):
-        """Принять заявку в работу"""
+        # Принять заявку в работу
         if self.status != 'new':
             return False
         self.status = 'in_progress'
@@ -155,7 +143,7 @@ class DesignRequest(models.Model):
         return True
 
     def complete(self, design_image):
-        """Завершить заявку: можно из 'new' или 'in_progress'"""
+        # Завершить заявку: можно из 'new' или 'in_progress'
         if self.status not in ('new', 'in_progress'):
             return False
         if not design_image:
